@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Mayi Tedavisi</string>
+    <string name="action_settings">Ayarlar</string>
+
+    <string name="kilo">Kilo (Örnek: 85)</string>
+    <string name="boy">Boy (Örnek: 174)</string>
+    <string name="son_yemek">Son yemek saati (Örnek: 21)</string>
+    <string name="op_başlangıç">Ameliyat başlama saati (Örnek: 8:30)</string>
+
+    <string name="cins">Cinsiyet</string>
+    <string name="erkek">Erkek</string>
+    <string name="kadın">Kadın</string>
+
+    <string name="turnike">Turnike</string>
+    <string name="var">Var</string>
+    <string name="yok">Yok</string>
+
+    <string name="artroskopi">Artroskopi</string>
+    <string name="kırık">ARIF</string>
+    <string name="parsiyel_protez">Parsiyel protez</string>
+    <string name="total_protez">Total protez</string>
+    <string name="revizyon_enfekte_protez">Revizyon/Enfekte protez</string>
+
+    <string name="kol">Kol</string>
+    <string name="kalça">Kalça</string>
+    <string name="bacak">Bacak</string>
+    <string name="çoklukırık">Çoklu ameliyat</string>
+    <string name="title_activity_mayi_tablosu">MayiTablosu</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

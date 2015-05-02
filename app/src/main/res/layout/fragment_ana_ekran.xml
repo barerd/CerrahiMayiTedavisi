@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".AnaEkran$PlaceholderFragment">
+
+    <EditText
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/boy"
+        android:hint="@string/boy"
+        android:singleLine="true"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="168dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/kilo"
+        android:hint="@string/kilo"
+        android:singleLine="true"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/boy"
+        android:id="@+id/op_başlangıç"
+        android:hint="@string/op_başlangıç"
+        android:singleLine="true"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/op_başlangıç"
+        android:id="@+id/son_yemek"
+        android:hint="@string/son_yemek"
+        android:singleLine="true"
+        android:inputType="number"/>
+
+    <Switch
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/cins"
+        android:text="@string/cins"
+        android:textSize="10pt"
+        android:textOn="@string/erkek"
+        android:textOff="@string/kadın"
+        android:layout_below="@+id/son_yemek" />
+
+    <Switch
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/turnike"
+        android:text="@string/turnike"
+        android:textSize="10pt"
+        android:textOn="@string/var"
+        android:textOff="@string/yok"
+        android:layout_below="@+id/cins" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/turnike"
+        android:id="@+id/ameliyatTürü"
+        android:orientation="vertical"
+        android:layout_alignEnd="@+id/hesaplaTuşu"
+        android:layout_alignParentStart="true">
+
+        <RadioButton android:id="@+id/artroskopi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artroskopi" />
+
+        <RadioButton android:id="@+id/arif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kırık" />
+
+        <RadioButton android:id="@+id/parsiyel_protez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/parsiyel_protez" />
+
+        <RadioButton android:id="@+id/total_protez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_protez" />
+
+        <RadioButton android:id="@+id/revizyon_enfekte_protez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/revizyon_enfekte_protez" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ameliyatTürü"
+        android:id="@+id/hesaplaTuşu"
+        android:text="Hesapla"
+        android:onClick="hesapla"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
