@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -20,6 +19,13 @@ import android.widget.Switch;
 import java.util.Locale;
 
 public class AnaEkran extends ActionBarActivity {
+    public final static String BOY = "com.agrimerkezi.mayitedavisi.boy";
+    public final static String KILO = "com.agrimerkezi.mayitedavisi.kilo";
+    public final static String OPERASYON_BASLANGICI = "com.agrimerkezi.mayitedavisi.opBaslangic";
+    public final static String SON_YEMEK_SAATI = "com.agrimerkezi.mayitedavisi.sonYemek";
+    public final static String CINSIYET = "com.agrimerkezi.mayitedavisi.cins";
+    public final static String TURNIKE = "com.agrimerkezi.mayitedavisi.turnike";
+    public final static String AMELIYAT_TURU = "com.agrimerkezi.mayitedavisi.ameliyat";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,63 +42,65 @@ public class AnaEkran extends ActionBarActivity {
      */
     ViewPager mViewPager;
 
-    /** Fonksiyonlar */
-/*      EditText boy_text = (EditText) findViewById(R.id.boy);
-        final int boy = Integer.parseInt(boy_text.getText().toString());
-        EditText kilo_text = (EditText) findViewById(R.id.kilo);
-        final int kilo = Integer.parseInt(kilo_text.getText().toString());
-        EditText op_başlangıç_text = (EditText) findViewById(R.id.op_başlangıç);
-        final int op_başlangıç = Integer.parseInt(op_başlangıç_text.getText().toString());
-        EditText son_yemek_text = (EditText) findViewById(R.id.son_yemek);
-        final int son_yemek = Integer.parseInt(son_yemek_text.getText().toString());
+    public void hesapla(View v) {
 
-        Switch cinsiyet = (Switch) findViewById(R.id.cins);
-        Switch turnikeli = (Switch) findViewById(R.id.turnike);
+//        Yazılanların seçimi
+        EditText eBoy = (EditText) findViewById(R.id.boy);
+        final String sBoy = eBoy.getText().toString();
+        EditText eKilo = (EditText) findViewById(R.id.kilo);
+        final String sKilo = eKilo.getText().toString();
+        EditText eOpBaslangic = (EditText) findViewById(R.id.op_baslangic);
+        final String sOpBaslangic = eOpBaslangic.getText().toString();
+        EditText eSonYemek = (EditText) findViewById(R.id.son_yemek);
+        final String sSonYemek = eSonYemek.getText().toString();
 
+//        Cinsiyet seçimi
+        Switch swCinsiyet = (Switch) findViewById(R.id.cins);
+        String sCinsiyet;
+
+        if(swCinsiyet.isChecked()){
+            sCinsiyet = "Erkek";
+        } else {
+            sCinsiyet = "Kadın";
+        }
+
+//        Turnike seçimi
+        Switch swTurnike = (Switch) findViewById(R.id.turnike);
+        String sTurnike;
+        if(swTurnike.isChecked()){
+            sTurnike = "Turnike Var";
+        } else {
+            sTurnike = "Turnike Yok";
+        }
+
+//        Ameliyat türü seçimi
         RadioButton artroskopi = (RadioButton) findViewById(R.id.artroskopi);
         RadioButton arif = (RadioButton) findViewById(R.id.arif);
         RadioButton parsiyel_protez = (RadioButton) findViewById(R.id.parsiyel_protez);
         RadioButton total_protez = (RadioButton) findViewById(R.id.total_protez);
         RadioButton revizyon_enfekte_protez = (RadioButton) findViewById(R.id.revizyon_enfekte_protez);
+        String sAmeliyat = null;
 
-        int kaçak;
-        double adjBW;
-        double kanHacmi;
-        double idame;
-
-        if(artroskopi.isChecked() || turnikeli.isChecked()) {
-            kaçak = 0;
+        if(artroskopi.isChecked()) {
+            sAmeliyat = "Artroskopi";
         } else if(arif.isChecked()) {
-            kaçak = 2;
-        } else {
-            kaçak = 3;
+            sAmeliyat = "ARİF";
+        } else if(parsiyel_protez.isChecked()) {
+            sAmeliyat = "Parsiyel protez";
+        } else if(total_protez.isChecked()) {
+            sAmeliyat = "Total protez";
+        } else if(revizyon_enfekte_protez.isChecked()) {
+            sAmeliyat = "Revizyon/Enfekte protez";
         }
 
-        double araHesap = (boy / 2.54 - 60) * 2.3;
-
-        if(cinsiyet.isChecked()){
-            adjBW = araHesap + 50;
-        } else {
-            adjBW = araHesap + 45.5;
-        }
-
-        if (cinsiyet.isChecked()) {
-            kanHacmi = adjBW * 75;
-        } else {
-            kanHacmi = adjBW * 65;
-        }
-
-        if (adjBW <= 10) {
-            idame = adjBW * 4;
-        } else if (adjBW > 10 && adjBW <= 20) {
-            idame = 40 + ((adjBW - 10) * 2);
-        } else if (adjBW > 20) {
-            idame = adjBW + 40;
-        }
-    }*/
-
-    public void hesapla(View v) {
         Intent intent = new Intent(AnaEkran.this, MayiTablosu.class);
+        intent.putExtra(BOY, sBoy);
+        intent.putExtra(KILO, sKilo);
+        intent.putExtra(OPERASYON_BASLANGICI, sOpBaslangic);
+        intent.putExtra(SON_YEMEK_SAATI, sSonYemek);
+        intent.putExtra(CINSIYET, sCinsiyet);
+        intent.putExtra(TURNIKE, sTurnike);
+        intent.putExtra(AMELIYAT_TURU, sAmeliyat);
         startActivity(intent);
     }
 
@@ -199,8 +207,7 @@ public static class PlaceholderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_ana_ekran, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_ana_ekran, container, false);
     }
 }
 
