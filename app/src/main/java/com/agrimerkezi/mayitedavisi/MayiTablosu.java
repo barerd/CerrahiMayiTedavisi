@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 public class MayiTablosu extends ActionBarActivity {
@@ -18,29 +17,20 @@ public class MayiTablosu extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        setContentView(R.layout.activity_mayi_tablosu);
-
-        Intent intent = getIntent();
-        String sBoy = intent.getStringExtra(AnaEkran.BOY);
-        String sKilo = intent.getStringExtra(AnaEkran.KILO);
-        String sOpBaslangic = intent.getStringExtra(AnaEkran.OPERASYON_BASLANGICI);
-        String sSon_yemek = intent.getStringExtra(AnaEkran.SON_YEMEK_SAATI);
-        final String sCinsiyet = intent.getStringExtra(AnaEkran.CINSIYET);
-        final String sTurnike = intent.getStringExtra(AnaEkran.TURNIKE);
-        final String sAmeliyat = intent.getStringExtra(AnaEkran.AMELIYAT_TURU);
-        final int iBoy = Integer.parseInt(sBoy);
-        final int iKilo = Integer.parseInt(sKilo);
-        final int iOpBaslangic = Integer.parseInt(sOpBaslangic);
-        final int iSon_yemek = Integer.parseInt(sSon_yemek);
-
-        TextView sonuc = new TextView(this);
-        sonuc.setText(sAmeliyat);
+        setContentView(R.layout.activity_mayi_tablosu);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+        Intent intent = getIntent();
+
+        int iSaatlikIdame = intent.getIntExtra(AnaEkran.SAATLIK_IDAME, 0);
+        int iSiviAcigi = intent.getIntExtra(AnaEkran.SIVI_ACIGI, 0);
+        int iSaatlikKacak = intent.getIntExtra(AnaEkran.SAATLIK_KACAK, 0);
+        int iOpBaslangic = intent.getIntExtra(AnaEkran.OPERASYON_BASLANGICI, 0);
     }
 
     @Override

@@ -19,13 +19,10 @@ import android.widget.Switch;
 import java.util.Locale;
 
 public class AnaEkran extends ActionBarActivity {
-    public final static String BOY = "com.agrimerkezi.mayitedavisi.boy";
-    public final static String KILO = "com.agrimerkezi.mayitedavisi.kilo";
-    public final static String OPERASYON_BASLANGICI = "com.agrimerkezi.mayitedavisi.opBaslangic";
-    public final static String SON_YEMEK_SAATI = "com.agrimerkezi.mayitedavisi.sonYemek";
-    public final static String CINSIYET = "com.agrimerkezi.mayitedavisi.cins";
-    public final static String TURNIKE = "com.agrimerkezi.mayitedavisi.turnike";
-    public final static String AMELIYAT_TURU = "com.agrimerkezi.mayitedavisi.ameliyat";
+    public final static String SAATLIK_IDAME = "com.agrimerkezi.mayitedavisi.iSaatlikIdame";
+    public final static String SIVI_ACIGI = "com.agrimerkezi.mayitedavisi.iSiviAcigi";
+    public final static String SAATLIK_KACAK = "com.agrimerkezi.mayitedavisi.iSaatlikKacak";
+    public final static String OPERASYON_BASLANGICI = "com.agrimerkezi.mayitedavisi.iOpBaslangic";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -46,62 +43,82 @@ public class AnaEkran extends ActionBarActivity {
 
 //        Yazılanların seçimi
         EditText eBoy = (EditText) findViewById(R.id.boy);
-        final String sBoy = eBoy.getText().toString();
         EditText eKilo = (EditText) findViewById(R.id.kilo);
-        final String sKilo = eKilo.getText().toString();
         EditText eOpBaslangic = (EditText) findViewById(R.id.op_baslangic);
-        final String sOpBaslangic = eOpBaslangic.getText().toString();
         EditText eSonYemek = (EditText) findViewById(R.id.son_yemek);
-        final String sSonYemek = eSonYemek.getText().toString();
 
 //        Cinsiyet seçimi
         Switch swCinsiyet = (Switch) findViewById(R.id.cins);
-        String sCinsiyet;
-
-        if(swCinsiyet.isChecked()){
-            sCinsiyet = "Erkek";
-        } else {
-            sCinsiyet = "Kadın";
-        }
 
 //        Turnike seçimi
         Switch swTurnike = (Switch) findViewById(R.id.turnike);
-        String sTurnike;
-        if(swTurnike.isChecked()){
-            sTurnike = "Turnike Var";
-        } else {
-            sTurnike = "Turnike Yok";
-        }
 
 //        Ameliyat türü seçimi
         RadioButton artroskopi = (RadioButton) findViewById(R.id.artroskopi);
         RadioButton arif = (RadioButton) findViewById(R.id.arif);
-        RadioButton parsiyel_protez = (RadioButton) findViewById(R.id.parsiyel_protez);
-        RadioButton total_protez = (RadioButton) findViewById(R.id.total_protez);
-        RadioButton revizyon_enfekte_protez = (RadioButton) findViewById(R.id.revizyon_enfekte_protez);
-        String sAmeliyat = null;
+        RadioButton parsiyelProtez = (RadioButton) findViewById(R.id.parsiyel_protez);
+        RadioButton totalProtez = (RadioButton) findViewById(R.id.total_protez);
+        RadioButton revizyonEnfekteProtez = (RadioButton) findViewById(R.id.revizyon_enfekte_protez);
 
-        if(artroskopi.isChecked()) {
-            sAmeliyat = "Artroskopi";
-        } else if(arif.isChecked()) {
-            sAmeliyat = "ARİF";
-        } else if(parsiyel_protez.isChecked()) {
-            sAmeliyat = "Parsiyel protez";
-        } else if(total_protez.isChecked()) {
-            sAmeliyat = "Total protez";
-        } else if(revizyon_enfekte_protez.isChecked()) {
-            sAmeliyat = "Revizyon/Enfekte protez";
+        int iBoy = 0;
+        if(eBoy.getText().toString().length() == 0)
+            eBoy.setError( "Hastanın boyunu girin!" );
+        else iBoy = Integer.parseInt(eBoy.getText().toString());
+
+        int iKilo = 0;
+        if(eKilo.getText().toString().length() == 0)
+            eKilo.setError( "Hastanın kilosunu girin!" );
+        else iKilo = Integer.parseInt(eKilo.getText().toString());
+
+        int iOpBaslangic = 0;
+        if(eOpBaslangic.getText().toString().length() != 4)
+            eOpBaslangic.setError( "Operasyonun başlangıç saatini '0835' şeklinde girin!" );
+        else iOpBaslangic = Integer.parseInt(eOpBaslangic.getText().toString());
+
+        int iSonYemek = 0;
+        if(eSonYemek.getText().toString().length() != 4)
+            eSonYemek.setError( "Hastanın en son yemek yediği saati '2130' şeklinde girin!" );
+        else iSonYemek = Integer.parseInt(eSonYemek.getText().toString());
+
+        int iIdealKilo;
+        if(swCinsiyet.isChecked()) {
+            iIdealKilo = (int) Math.round(50 + ((iBoy / 2.54 - 60) * 2.3));
+        } else {
+            iIdealKilo = (int) Math.round(45.5 + ((iBoy / 2.54 - 60) * 2.3));
         }
 
-        Intent intent = new Intent(AnaEkran.this, MayiTablosu.class);
-        intent.putExtra(BOY, sBoy);
-        intent.putExtra(KILO, sKilo);
-        intent.putExtra(OPERASYON_BASLANGICI, sOpBaslangic);
-        intent.putExtra(SON_YEMEK_SAATI, sSonYemek);
-        intent.putExtra(CINSIYET, sCinsiyet);
-        intent.putExtra(TURNIKE, sTurnike);
-        intent.putExtra(AMELIYAT_TURU, sAmeliyat);
-        startActivity(intent);
+        int iSaatlikIdame = 0;
+        if(iKilo <= 10) {
+            iSaatlikIdame = iKilo * 4;
+        } else if(iKilo <= 20) {
+            iSaatlikIdame = 40 + 2 * (iKilo - 10);
+        } else if(iKilo > 20) {
+            iSaatlikIdame = iKilo + 40;
+        }
+
+        int iSiviAcigi = iSaatlikIdame * (int) Math.round((2400 - iSonYemek + iOpBaslangic) / 100) +
+                (int) Math.round((((2400 - iSonYemek + iOpBaslangic) % 100) / 60));
+
+        int iSaatlikKacak = 0;
+        if(swTurnike.isChecked() || artroskopi.isChecked()){
+            iSaatlikKacak = 0;
+        } else if(arif.isChecked()) {
+            iSaatlikKacak = 2 * iIdealKilo;
+        } else if(parsiyelProtez.isChecked() || totalProtez.isChecked() || revizyonEnfekteProtez.isChecked()) {
+            iSaatlikKacak = 3 * iIdealKilo;
+        }
+
+        if (eBoy.getText().toString().length() > 0 &&
+                eKilo.getText().toString().length() > 0 &&
+                eOpBaslangic.getText().toString().length() == 4 &&
+                eSonYemek.getText().toString().length() == 4) {
+            Intent intent = new Intent(AnaEkran.this, MayiTablosu.class);
+            intent.putExtra(SAATLIK_IDAME, iSaatlikIdame);
+            intent.putExtra(SIVI_ACIGI, iSiviAcigi);
+            intent.putExtra(SAATLIK_KACAK, iSaatlikKacak);
+            intent.putExtra(OPERASYON_BASLANGICI, iOpBaslangic);
+            startActivity(intent);
+        }
     }
 
     @Override

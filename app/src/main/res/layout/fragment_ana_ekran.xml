@@ -66,7 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/turnike"
-        android:id="@+id/ameliyatTürü"
+        android:id="@+id/ameliyat_türü"
         android:orientation="vertical"
         android:layout_alignEnd="@+id/hesaplaTuşu"
         android:layout_alignParentStart="true">
@@ -74,7 +74,8 @@
         <RadioButton android:id="@+id/artroskopi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/artroskopi" />
+            android:text="@string/artroskopi"
+            android:checked="true"/>
 
         <RadioButton android:id="@+id/arif"
             android:layout_width="wrap_content"
@@ -101,7 +102,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/ameliyatTürü"
+        android:layout_below="@+id/ameliyat_türü"
         android:id="@+id/hesaplaTuşu"
         android:text="Hesapla"
         android:onClick="hesapla"
