@@ -23,18 +23,18 @@ public class MayiTablosu extends ActionBarActivity {
         Intent intent = getIntent();
         String sBoy = intent.getStringExtra(AnaEkran.BOY);
         String sKilo = intent.getStringExtra(AnaEkran.KILO);
-        String sOp_baþlangýç = intent.getStringExtra(AnaEkran.OPERASYON_BASLANGICI);
+        String sOpBaslangic = intent.getStringExtra(AnaEkran.OPERASYON_BASLANGICI);
         String sSon_yemek = intent.getStringExtra(AnaEkran.SON_YEMEK_SAATI);
         final String sCinsiyet = intent.getStringExtra(AnaEkran.CINSIYET);
         final String sTurnike = intent.getStringExtra(AnaEkran.TURNIKE);
         final String sAmeliyat = intent.getStringExtra(AnaEkran.AMELIYAT_TURU);
         final int iBoy = Integer.parseInt(sBoy);
         final int iKilo = Integer.parseInt(sKilo);
-        final int iOp_baþlangýç = Integer.parseInt(sOp_baþlangýç);
+        final int iOpBaslangic = Integer.parseInt(sOpBaslangic);
         final int iSon_yemek = Integer.parseInt(sSon_yemek);
 
-        TextView sonuç = new TextView(this);
-        sonuç.setText(sAmeliyat);
+        TextView sonuc = new TextView(this);
+        sonuc.setText(sAmeliyat);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -42,56 +42,6 @@ public class MayiTablosu extends ActionBarActivity {
                     .commit();
         }
     }
-
-    /*final int kilo = Integer.parseInt(kilo_text.getText().toString());
-    *
-    * if(cinsiyet.isChecked()){
-            idealKilo = araHesap + 50;
-        } else {
-            idealKilo = araHesap + 45.5;
-        }
-
-        double idealKilo;
-
-        double araHesap = (boy / 2.54 - 60) * 2.3;
-
-        double açlýkSüresi;
-
-        /*op_baþlangýç
-        if(son_yemek)        son_yemek*/
-
-    /*int kaçak;
-
-    if(artroskopi.isChecked() || turnikeli.isChecked()) {
-        kaçak = 0;
-    } else if(arif.isChecked()) {
-        kaçak = 2;
-    } else {
-        kaçak = 3;
-    }
-
-    double saatlikÝdame;
-
-    if (idealKilo <= 10) {
-        saatlikÝdame = idealKilo * 4;
-    } else if (idealKilo > 10 && idealKilo <= 20) {
-        saatlikÝdame = 40 + ((idealKilo - 10) * 2);
-    } else if (idealKilo > 20) {
-        saatlikÝdame = idealKilo + 40;
-    }
-
-    double sývýAçýðý;
-
-    double kanHacmi;
-
-    if (cinsiyet.isChecked()) {
-        kanHacmi = idealKilo * 75;
-    } else {
-        kanHacmi = idealKilo * 65;
-    }
-
-    double cerrahiÝdame;*/
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

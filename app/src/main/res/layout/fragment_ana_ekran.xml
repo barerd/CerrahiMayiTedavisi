@@ -28,15 +28,15 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/boy"
-        android:id="@+id/op_başlangıç"
-        android:hint="@string/op_başlangıç"
+        android:id="@+id/op_baslangic"
+        android:hint="@string/op_baslangic"
         android:singleLine="true"
         android:inputType="number"/>
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/op_başlangıç"
+        android:layout_below="@+id/op_baslangic"
         android:id="@+id/son_yemek"
         android:hint="@string/son_yemek"
         android:singleLine="true"
