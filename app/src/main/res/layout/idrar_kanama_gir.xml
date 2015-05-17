@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/no"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/idrar"
+        android:id="@+id/idrar"
+        android:layout_below="@+id/no" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/kanama"
+        android:id="@+id/kanama"
+        android:layout_below="@+id/idrar"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="@string/idrar_kanama_tusu"
+        android:id="@+id/idrarKanamaHesapla"
+        android:layout_below="@+id/kanama"
+        android:layout_alignEnd="@+id/kanama" />
+
+</RelativeLayout>
